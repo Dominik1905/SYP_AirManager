@@ -3,6 +3,7 @@ library dashboard;
 import 'package:air_manager/app/config/routes/app_pages.dart';
 import 'package:air_manager/app/shared_components/async_button.dart';
 import 'package:air_manager/app/utils/services/service.dart';
+import 'package:air_manager/app/config/themes/app_theme.dart';
 
 import '../../../../config/routes/app_pages.dart';
 import '../../../../constans/app_constants.dart';
@@ -24,6 +25,8 @@ part '../../controllers/dashboard_controller.dart';
 // component
 part '../components/sign_out_button.dart';
 part '../components/user_profile_button.dart';
+part '../components/change_color_button.dart';
+
 
 class DashboardScreen extends GetView<DashboardController> {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -31,6 +34,7 @@ class DashboardScreen extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     final auth = AuthService();
+
     final CollectionReference _referenceFolders = FirebaseFirestore.instance
         .collection('Daten')
         .doc(auth.currentUser!.uid)
@@ -97,8 +101,10 @@ class DashboardScreen extends GetView<DashboardController> {
                   _buildStatisticsTemperature(),
                   const SizedBox(height: kDefaultSpacing),
                   _buildStatisticsHumanity(),
-                  const SizedBox(height: kDefaultSpacing * 8.5),
+                  const SizedBox(height: kDefaultSpacing * 5.5),
                   _buildUserProfileButton(),
+                  const SizedBox(height: kDefaultSpacing * 0.5),
+                  _buildChangeColorButton(),
                   const SizedBox(height: kDefaultSpacing * 1.5),
                   _buildSignOutButton(),
                 ],
@@ -123,6 +129,14 @@ class DashboardScreen extends GetView<DashboardController> {
           () => _UserProfileButon(
         isLoading: controller.isLoading.value,
         onPressed: () => controller.userProfile(),
+      ),
+    );
+  }
+  Widget _buildChangeColorButton(){
+    return Obx(
+          () => _ChangeColorButton(
+        isLoading: controller.isLoading.value,
+        onPressed: () => controller.changeColor(),
       ),
     );
   }
@@ -184,14 +198,6 @@ class DashboardScreen extends GetView<DashboardController> {
     return Image.asset(
       ImageRasterPath.weather,
       height: 200,
-    );
-  }
-  Widget _buildTemperature() {
-    return Text(
-      "Hilfe",
-      textAlign: TextAlign.center,
-      overflow: TextOverflow.ellipsis,
-      style: const TextStyle(fontWeight: FontWeight.bold),
     );
   }
 }

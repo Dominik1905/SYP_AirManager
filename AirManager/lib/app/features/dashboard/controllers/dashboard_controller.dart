@@ -17,4 +17,8 @@ class DashboardController extends GetxController {
     isLoading.value = false;
     Get.offAllNamed(Routes.userProfile);
   }
+  void changeColor() {
+    isLoading.value = false;
+    theme: AppTheme.dark;
+  }
 }

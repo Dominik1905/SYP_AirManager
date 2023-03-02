@@ -15,6 +15,18 @@ class AppTheme {
         ),
       );
 
+  static ThemeData get dark => ThemeData(
+    canvasColor: Colors.black,
+    primarySwatch: Colors.deepPurple,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    ),
+  );
+
   // you can add other custom theme in this class like  light theme, dark theme ,etc.
 
   // example :
