@@ -32,4 +32,6 @@ class AppTheme {
   // example :
   // static ThemeData get light => ThemeData();
   // static ThemeData get dark => ThemeData();
+
+
 }

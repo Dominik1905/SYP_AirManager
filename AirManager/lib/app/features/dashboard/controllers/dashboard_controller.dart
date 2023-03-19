@@ -19,6 +19,6 @@ class DashboardController extends GetxController {
   }
   void changeColor() {
     isLoading.value = false;
-    theme: AppTheme.dark;
+    AppTheme.dark;
   }
 }

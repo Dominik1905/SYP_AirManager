@@ -103,8 +103,6 @@ class DashboardScreen extends GetView<DashboardController> {
                   _buildStatisticsHumanity(),
                   const SizedBox(height: kDefaultSpacing * 5.5),
                   _buildUserProfileButton(),
-                  const SizedBox(height: kDefaultSpacing * 0.5),
-                  _buildChangeColorButton(),
                   const SizedBox(height: kDefaultSpacing * 1.5),
                   _buildSignOutButton(),
                 ],

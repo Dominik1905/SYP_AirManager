@@ -1,6 +1,7 @@
 library user_profile;
 
 import 'package:air_manager/app/config/routes/app_pages.dart';
+import 'package:air_manager/app/config/themes/theme_manager.dart';
 import 'package:air_manager/app/constans/app_constants.dart';
 import 'package:air_manager/app/shared_components/async_button.dart';
 import 'package:air_manager/app/shared_components/header_text.dart';
@@ -29,14 +30,23 @@ part '../components/text_field/telephonenumber_text_field.dart';
 part '../components/text_field/adress_text_field.dart';
 part '../components/text_field/desired_room_temperature.dart';
 
+
+ThemeManager _themeManager = new ThemeManager();
+
 class UserProfileScreen extends GetView<UserProfileController> {
   const UserProfileScreen({Key? key}) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Color Mode"),
+        actions: [
+          Switch(value: _themeManager.themeMode == ThemeMode.dark, onChanged: (newValue){
+            _themeManager.toggleTheme(newValue);
+          })
+        ],
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(
