@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diplomarbeit/models/user.dart';
 import 'package:diplomarbeit/models/userData.dart';
@@ -10,12 +12,16 @@ class DatabaseService {
   // collection reference
   final CollectionReference userDataCollection = FirebaseFirestore.instance.collection("users");
 
-  Future updateUserData(String eyesight, String firstname, String secondname, String education) async {
+  Future updateUserData(String eyesight, String firstname, String secondname, String education, String dateOfBirth, String schoolClass, double usedWeightBarbell, double weeklyGoal) async {
     return await userDataCollection.doc(uid).set({
         "eyesight": eyesight,
         "firstname": firstname,
         "secondname": secondname,
         "education": education,
+        "dateOfBirth": dateOfBirth,
+        "schoolClass": schoolClass,
+        "usedWeightBarbell": usedWeightBarbell,
+        "weeklyGoal": weeklyGoal
       });
   }
 
@@ -27,6 +33,10 @@ class DatabaseService {
         secondname: doc.get("secondname") ?? "",
         eyesight: doc.get("eyesight") ?? "",
         education: doc.get("education") ?? "",
+        dateOfBirth: doc.get("dateOfBirth") ?? "",
+        schoolClass: doc.get("schoolClass") ?? "",
+        usedWeightBarbell: doc.get("usedWeightBarbell") ?? "",
+          weeklyGoal: doc.get("weeklyGoal") ?? ""
       );
     }).toList();
   }
@@ -38,7 +48,11 @@ class DatabaseService {
         snapshot.get("firstname"),
         snapshot.get("secondname"),
         snapshot.get("eyesight"),
-        snapshot.get("education")
+        snapshot.get("education"),
+        snapshot.get("dateOfBirth"),
+        snapshot.get("schoolClass"),
+        snapshot.get("usedWeightBarbell"),
+        snapshot.get("weeklyGoal")
     );
 
   }
