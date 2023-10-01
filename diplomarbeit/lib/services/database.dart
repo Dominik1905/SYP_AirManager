@@ -25,6 +25,7 @@ class DatabaseService {
       });
   }
 
+
   // user list from snapshot
   List<UserData> _userListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.docs.map((doc){
@@ -56,6 +57,7 @@ class DatabaseService {
     );
 
   }
+
   
   // get users stream
   Stream<List<UserData>> get users {

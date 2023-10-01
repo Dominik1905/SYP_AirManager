@@ -1,8 +1,13 @@
 import 'package:diplomarbeit/models/user.dart';
 import 'package:diplomarbeit/screens/authenticate/authenticate.dart';
 import 'package:diplomarbeit/screens/home/home.dart';
+import 'package:diplomarbeit/screens/home/homeForStudent.dart';
+import 'package:diplomarbeit/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../models/userData.dart';
+import 'home/user_tile.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({super.key});
@@ -16,6 +21,7 @@ class Wrapper extends StatelessWidget {
     if(user==null){
       return Authenticate();
     } else{
+
       return Home();
     }
   }
