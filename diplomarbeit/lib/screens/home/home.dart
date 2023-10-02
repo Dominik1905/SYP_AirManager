@@ -7,6 +7,11 @@ import 'package:provider/provider.dart';
 import 'package:diplomarbeit/services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_tts/flutter_tts.dart';
+import 'dart:async';
+
 import '../../models/user.dart';
 import '../../models/userData.dart';
 
@@ -14,8 +19,6 @@ class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
   final AuthService _auth = AuthService();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +60,14 @@ class Home extends StatelessWidget {
               ),
               icon: Icon(Icons.settings),
               label: Text("settings"),
+              onPressed: () => _showSettingsPanel(),
+            ),
+            TextButton.icon(
+              style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.black)
+              ),
+              icon: Icon(Icons.surround_sound),
+              label: Text("Vorlesen"),
               onPressed: () => _showSettingsPanel(),
             )
           ],

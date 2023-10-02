@@ -16,13 +16,20 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final user = Provider.of<OurUser?>(context);
-
     // return either Home or Authenticate widget
     if(user==null){
       return Authenticate();
-    } else{
-
-      return Home();
     }
+    String x = "";
+    DatabaseService dbservice = DatabaseService(uid: user.uid!);
+    dbservice.userData.listen((fick){
+      x = fick.education;
+    });
+    print(x);
+    if(x == "Lehrer"){
+      return Home();
+    } else {
+        return HomeForStudent();
+      }
   }
 }
